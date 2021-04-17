@@ -20,4 +20,26 @@
 #
 # *************************************************************************
 
-from . import get, get_client, get_publisher, get_server, get_subscriber
+from rospy import get_param, Publisher
+from aliveos_msgs import msg
+from .get import publisher
+
+
+def perception_concept() -> Publisher:
+    return publisher(topic_name=get_param("TOPIC_PC"), data_class=msg.PerceptionConcept)
+
+
+def ego_commands() -> Publisher:
+    return publisher(topic_name=get_param("TOPIC_EGOCMD"), data_class=msg.EgoCommands)
+
+
+def device_cmd() -> Publisher:
+    return publisher(topic_name=get_param("TOPIC_DEV_CMD"), data_class=msg.DeviceCmd)
+
+
+def device_data() -> Publisher:
+    return publisher(topic_name=get_param("TOPIC_DEV_DATA"), data_class=msg.DeviceData)
+
+
+def emotion_params() -> Publisher:
+    return publisher(topic_name=get_param("TOPIC_EPARAM"), data_class=msg.EmotionParams)

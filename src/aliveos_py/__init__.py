@@ -12,3 +12,4 @@
 
 from . import ros
 from . import helpers
+from .namespaces import ConstantNamespace

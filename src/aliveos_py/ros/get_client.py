@@ -20,4 +20,26 @@
 #
 # *************************************************************************
 
-from . import get, get_client, get_publisher, get_server, get_subscriber
+from rospy import get_param, ServiceProxy
+from aliveos_msgs import srv
+from .get import client
+
+
+def command_concept() -> ServiceProxy:
+    return client(srv_name=get_param("SRV_C2C_CMDC"), service=srv.CommandConcept)
+
+
+def command_concept_descriptor() -> ServiceProxy:
+    return client(srv_name=get_param("SRV_C2C_CMDDSC"), service=srv.CommandConceptDescriptor)
+
+
+def emotion_core_write() -> ServiceProxy:
+    return client(srv_name=get_param("SRV_ECORE_W"), service=srv.EmotionCoreWrite)
+
+
+def emotion_code_data_descriptor() -> ServiceProxy:
+    return client(srv_name=get_param("SRV_ECORE_DDSC"), service=srv.EmotionCoreDataDescriptor)
+
+
+def hw(server_name) -> ServiceProxy:
+    return client(srv_name=server_name, service=srv.Hw)
